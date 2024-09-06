@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """1 function: sum_mixed_list(mxd_list) - sum of mxd_list """
-from typing import List, Union
+from typing import List
+from typung import Union
 
 
 def sum_mixed_list(mxd_list: List[Union[float, int]]) -> float:
