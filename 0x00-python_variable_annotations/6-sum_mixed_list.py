@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""1 function: sum_mixed_list(mxd_list) - sum of mxd_list """
+"""This module defines a function `sum_mixed_list`"""
+from typing import Union
 from typing import List
-from typung import Union
 
 
-def sum_mixed_list(mxd_list: List[Union[float, int]]) -> float:
-    """returns the sum of input_list"""
+def sum_mixed_list(mxd_list: List[Union[int, float]]) -> float:
+    """returns the sum of list elements"""
     return float(sum(mxd_list))
