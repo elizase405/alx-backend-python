@@ -3,7 +3,7 @@
 import unittest
 from parameterized import parameterized
 import utils
-from typing import Mapping, List, Union
+from typing import Mapping, List, Union, Type
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -17,3 +17,13 @@ class TestAccessNestedMap(unittest.TestCase):
                                expected: Union[int, Mapping]) -> None:
         """ unit test for utils.access_nested_map """
         self.assertEqual(utils.access_nested_map(data, path), expected)
+
+    @parameterized.expand([
+        ({}, ["a"], KeyError),
+        ({"a": 1}, ["a", "b"], KeyError)
+    ])
+    def test_access_nested_map_exception(self, data: Mapping, path: List[str],
+                                         expected: Type[Exception]) -> None:
+        """ raise KeyError if wrong input is entered """
+        with self.assertRaises(expected):
+            utils.access_nested_map(data, path)
