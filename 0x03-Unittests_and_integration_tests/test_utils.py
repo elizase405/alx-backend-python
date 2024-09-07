@@ -2,6 +2,8 @@
 """A module to perform unittesting"""
 import unittest
 from parameterized import parameterized
+import utils
+from typing import Mapping, List, Union
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -11,12 +13,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ["a"], {"b": 2}),
         ({"a": {"b": 2}}, ["a", "b"], 2),
     ])
-
-    def __init__(self):
-        """ constructor """
-        pass
-
-    @property
-    def test_access_nested_map(self, data, path, expected):
+    def test_access_nested_map(self, data: Mapping, path: List[str],
+                               expected: Union[int, Mapping]) -> None:
         """ unit test for utils.access_nested_map """
         self.assertEqual(utils.access_nested_map(data, path), expected)
