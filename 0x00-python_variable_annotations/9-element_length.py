@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+""" Module containing 1 function: element_length """
+from typing import Iterable, Sequence, List, Tuple
+
+
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[int, Sequence]]:
+    return [(i, len(i)) for i in lst]
