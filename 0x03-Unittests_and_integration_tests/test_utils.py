@@ -3,7 +3,8 @@
 import unittest
 from parameterized import parameterized
 import utils
-from typing import Mapping, List, Union, Type
+from unittest.mock import patch
+from typing import Mapping, List, Union, Type, Dict
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -27,3 +28,22 @@ class TestAccessNestedMap(unittest.TestCase):
         """ raise KeyError if wrong input is entered """
         with self.assertRaises(expected):
             utils.access_nested_map(data, path)
+
+
+class TestGetJson(unittest.TestCase):
+    ''' Implement the test_get_json method '''
+    @parameterized.expand([
+        ('http://example.com', {'payload': True}),
+        ('http://holberton.io', {'payload': False})
+    ])
+
+    def test_get_json(self, test_url: str, test_payload: Mapping[str, bool]) -> None:
+        ''' test that utils.get_json returns the expected result. '''
+        with patch('requests.get') as mock:
+            mock.return_value.json.return_value = test_payload
+
+            # Call assert to check if the request works
+            self.assertEqual(utils.get_json(test_url), test_payload)
+
+            # assert that the mock was executed atleast once when called
+            mock.assert_called_once_with(test_url)
