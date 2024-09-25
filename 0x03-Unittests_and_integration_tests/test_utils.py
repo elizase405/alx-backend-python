@@ -47,3 +47,22 @@ class TestGetJson(unittest.TestCase):
 
             # assert that the mock was executed atleast once when called
             mock.assert_called_once_with(test_url)
+
+
+class TestMemoize(unittest.TestCase):
+    ''' Implementing a method to test utils.memoize decorator'''
+    
+    def test_memoize(self):
+        ''' Testing that the memoize decorator is working well '''
+        class TestClass:
+            def a_method(self):
+                return 42
+            @utils.memoize
+            def a_property(self):
+                return self.a_method()
+            
+        with patch.object(TestClass, 'a_method', return_value=42) as mock_method:
+            test = TestClass()
+            test.a_property
+            test.a_property
+            mock_method.assert_called_once()
