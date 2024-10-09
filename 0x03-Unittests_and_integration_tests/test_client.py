@@ -15,22 +15,18 @@ class TestGithubOrgClient(unittest.TestCase):
         ('google'),
         ('abc')
     ])
-
-    @patch('client.get_json')    # we're mocking this method
+    @patch('client.get_json')   # we're mocking this method
     def test_org(self, org_name, mock_client):
         ''' Test that GithubOrgClient.org returns the correct value '''
-
         url = f'https://api.github.com/orgs/{org_name}'
         test = GithubOrgClient(org_name)
-        test.org()	# calling the method that'll trigger get_json
-        
+        test.org()  # calling the method that'll trigger get_json
         mock_client.assert_called_once_with(url)
 
     @parameterized.expand([
         ('google'),
         ('abc')
     ])
-
     def test_public_repos_url(self, org_name):
         # unit-test GithubOrgClient._public_repos_url
 
