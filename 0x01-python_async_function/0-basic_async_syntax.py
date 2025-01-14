@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" wait_random: Asynchronous coroutine
+    wait_random(5) - float value between 0 and 5"""
 
 import random
 import asyncio
