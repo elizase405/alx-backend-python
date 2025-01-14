@@ -10,11 +10,11 @@ async def wait_random(max_delay: int = 10):
     waits for a random delay between 0 and arg,
     and eventually returns it.
 
-    args: max_delay(int) - maximum random delay value
+    args: max_delay(int) - maximumrandom  delay value
 
     return: (int) - randomly generated value
     """
 
-    delay: int = random.uniform(0, max_delay)
+    delay: float = random.uniform(0, max_delay)
     await asyncio.sleep(delay)
     return delay
